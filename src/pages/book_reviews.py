@@ -3,12 +3,9 @@ import pandas as pd
 
 st.set_page_config(page_title="Amazon Top 100 Treending Books", layout="wide")
 
-# Carregando os datasets
 df_customers_review = pd.read_csv('datasets/customers_review.csv')
 df_top100_trending_books = pd.read_csv('datasets/top100_trending_books.csv')
 
-# Pegando os títulos dos livros e adicionando a uma lista com o unique().
-# O component selectbox com carrega um valor padrão e depois carrega a lista de livros.
 list_books = df_top100_trending_books["book title"].unique()
 selected_book = st.sidebar.selectbox("**Select a book**", list_books)
 
@@ -20,7 +17,6 @@ max_rating = st.sidebar.slider("Reviewer Rating", rating_min, rating_max, rating
 df_book = df_top100_trending_books[df_top100_trending_books["book title"] == selected_book]
 df_reviews_filter = df_customers_review[df_customers_review["book name"] == selected_book]
 
-# Pegando as informações do livro
 book_title = df_book["book title"].iloc[0] 
 book_genre = df_book["genre"].iloc[0] 
 book_price = df_book["book price"].iloc[0] 
